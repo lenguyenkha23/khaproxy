@@ -96,9 +96,11 @@ IP4=$(curl -4 -s icanhazip.com)
 IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
+echo "Nhap so luong proxy muon tao. VD muon tao 500 thi nhap 500"
+read COUNT
 
-FIRST_PORT=22000
-LAST_PORT=22700
+FIRST_PORT=10000
+LAST_PORT=$(($FIRST_PORT + $COUNT))
 
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
@@ -112,12 +114,10 @@ bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 ulimit -n 10048
 /usr/local/etc/3proxy/bin/3proxy /usr/local/etc/3proxy/3proxy.cfg
+service 3proxy start
 EOF
 
 bash /etc/rc.local
 
 gen_proxy_file_for_user
-rm -rf /root/3proxy-3proxy-0.8.6
-
-echo "Starting Proxy"
-
+upload_proxy
