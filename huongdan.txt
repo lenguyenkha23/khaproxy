@@ -1,0 +1,7 @@
+Các bạn chạy lệnh sau để cài đặt trong trường hợp proxy cần user và pass:
+wget https://raw.githubusercontent.com/lenguyenkha23/khaproxy/main/install.sh && chmod +x install.sh && bash install.sh  
+
+ 
+
+Các bạn chạy lệnh sau để cài đặt trong trường hợp proxy trống và không cần nhập user và pass:
+wget https://raw.githubusercontent.com/lenguyenkha23/khaproxy/main/nousrpw.sh && chmod +x nousrpw.sh && bash nousrpw.sh
